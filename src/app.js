@@ -9,5 +9,17 @@ database.connect();
 app.use(express.json());
 app.use(cors())
 
+//website routers
+const websiteRouter = require("./routers/websiteRouter");
+app.use("/", websiteRouter);
+
+//EAD routers
+
+
+//Admin routers
+const adminRouter = require("./routers/admin/adminRouter");
+app.use("/admin", adminRouter);
+
+
 
 module.exports = app;
