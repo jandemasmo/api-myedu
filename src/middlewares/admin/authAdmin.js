@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const UserAdmin = require("../../models/admin/userAdmin");
+const UserAdmin = require("../../models/userAdminSchema");
 
 const auth = async (req, res, next) => {
 
@@ -16,6 +16,7 @@ const auth = async (req, res, next) => {
         const user = jwt.verify(token, process.env.JWT_SECRET_TOKEN)
         const isAdmin = await UserAdmin.findOne({email: user.email});
         if(isAdmin.permission === "admin"){
+            req.user = isAdmin;
             next()
         }else{
             res.status(401).json({message: "Acesso não permitido"});

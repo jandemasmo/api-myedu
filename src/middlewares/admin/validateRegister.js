@@ -3,7 +3,6 @@ const expressValidator = require("express-validator");
 const auth = expressValidator.checkSchema({
     name:{
         trim: true,
-        notEmpty: true,
         isLength: {
             options: {min: 2}
         },

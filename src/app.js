@@ -17,7 +17,7 @@ app.use("/", websiteRouter);
 
 
 //Admin routers
-const adminRouter = require("./routers/admin/adminRouter");
+const adminRouter = require("./routers/adminRouter");
 app.use("/admin", adminRouter);
 
 
