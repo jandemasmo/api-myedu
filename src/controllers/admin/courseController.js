@@ -1,7 +1,15 @@
 const CourseSchema = require("../../models/courseSchema");
+const expressValidator = require("express-validator");
 
 const addCurso = async (req, res) => {
     try {
+        const errors = expressValidator.validationResult(req).formatWith(({msg}) => {
+            return msg
+        });
+        if(!errors.isEmpty()){
+            return res.status(401).json({ message: errors.mapped() });
+        }
+
         const { name, description, duration  } = req.body;
         const newCourse = await new CourseSchema({name, description, duration});
         newCourse.save()
@@ -12,6 +20,13 @@ const addCurso = async (req, res) => {
 }
 
 const getCurso = async (req, res) => {
+    const errors = expressValidator.validationResult(req).formatWith(({msg}) => {
+        return msg
+    });
+    if(!errors.isEmpty()){
+        return res.status(401).json({ message: errors.mapped() });
+    }
+
     try {
         course = await CourseSchema.findById({_id: req.params.id});
         res.status(200).json({course});  
@@ -21,6 +36,13 @@ const getCurso = async (req, res) => {
 }
 
 const getAllCurso = async (req, res) => {
+    const errors = expressValidator.validationResult(req).formatWith(({msg}) => {
+        return msg
+    });
+    if(!errors.isEmpty()){
+        return res.status(401).json({ message: errors.mapped() });
+    }
+
     try {
         courses = await CourseSchema.find();
         res.status(200).json({courses});  
@@ -30,6 +52,13 @@ const getAllCurso = async (req, res) => {
 }
 
 const updateCurso = async (req, res) => {
+    const errors = expressValidator.validationResult(req).formatWith(({msg}) => {
+        return msg
+    });
+    if(!errors.isEmpty()){
+        return res.status(401).json({ message: errors.mapped() });
+    }
+
     try {
         course = await CourseSchema.findById({_id: req.params.id});
         console.log(course)
