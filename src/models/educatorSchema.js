@@ -7,9 +7,11 @@ const educatorSchema = new mongoose.Schema({
     password: { type: String, required: true}, 
     permission: { type: String, default: "educator"},
     educatorInTheCourse: {
-        type: [
-            {type: mongoose.Schema.Types.ObjectId, ref: "CourseSchema", required: true}
-        ]
+        type: [{
+                type: mongoose.Schema.Types.ObjectId, 
+                ref: "CourseSchema", 
+                required: true
+            }]
     }
 });
 
