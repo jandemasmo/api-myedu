@@ -14,7 +14,8 @@ const websiteRouter = require("./routers/websiteRouter");
 app.use("/", websiteRouter);
 
 //EAD routers
-
+const eadRouter = require("./routers/eadRouter");
+app.use("/ead", eadRouter)
 
 //Admin routers
 const adminRouter = require("./routers/adminRouter");

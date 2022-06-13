@@ -12,7 +12,6 @@ const educatorValidator = require("../middlewares/admin/educatorValidator");
 const studentValidator = require("../middlewares/admin/studentValidate");
 
 const authAdmin = require("../middlewares/admin/authAdmin");
-const authStudent = require("../middlewares/admin/authStudent");
 
 router.get("/",authAdmin.auth ,adminController.dashboard);
 
@@ -33,9 +32,13 @@ router.post("/educator",authAdmin.auth, educatorValidator.auth, educatorControll
 router.get("/educator/:id",authAdmin.auth, educatorController.getEducator );
 router.get("/educator",authAdmin.auth, educatorController.getAllEducator );
 router.put("/educator/:id",authAdmin.auth, educatorValidator.auth, educatorController.updateEducator );
-router.delete("/educator/:id",authAdmin.auth, educatorValidator.auth, educatorController.deleteEducator );
+router.delete("/educator/:id",authAdmin.auth, educatorController.deleteEducator );
 
-//students routes
-router.post("/student", authAdmin.auth, studentValidator.auth ,studentsController.addStudent)
+//student routes
+router.post("/student", authAdmin.auth, studentValidator.auth ,studentsController.addStudent);
+router.get("/student/:id", authAdmin.auth, studentsController.getStudent);
+router.get("/student", authAdmin.auth, studentsController.getAllStudents);
+router.put("/student/:id", authAdmin.auth, studentValidator.auth , studentsController.updateStudent);
+router.delete("/student/:id", authAdmin.auth, studentsController.deleteStudent);
 
 module.exports = router;

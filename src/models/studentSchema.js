@@ -5,6 +5,7 @@ const StudentSchema = mongoose.Schema({
     name: {type: String, required: true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
+    permission: { type: String, default: "aluno"},
     course: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "CourseSchema",
