@@ -26,7 +26,7 @@ const register = async (req, res) => {
             const { name, email, password } = req.body;
             const newUserAdmin = new UserAdminSchema({ name, email, password});
             await newUserAdmin.save();
-            res.status(200).json({message:{success: "Usuário admnin criado com sucesso"}, newUserAdmin});
+            res.status(200).json({message:{success: "Usuário admnin criado com sucesso"}, user: newUserAdmin});
         }else{
             return res.status(403).json({ message: {error: "Já existe um usuário com esse email"}}); 
         }
@@ -56,7 +56,7 @@ const login = async  (req, res) => {
         }
 
         const token = jwt.sign({email: userVerify.email}, process.env.JWT_SECRET_TOKEN )
-        res.status(200).json({ token });
+        res.status(200).json({token:  token , user: userVerify});
     } catch (error) {
         res.status(500).json({message: {error: "Erro interno. Tente novamente"}})
     }
