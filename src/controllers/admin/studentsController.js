@@ -62,11 +62,16 @@ const updateStudent = async (req, res) =>{
         if(!errors.isEmpty()){
             return res.status(401).json({message: errors.mapped()})
         }
+
         const studentToUpdate = await StudentSchema.findOne({_id: req.params.id});
         if(studentToUpdate){
-           //continuar lógica para atualização de estudante
+            req.body.password = bcrypt.hashSync(req.body.password, 10);
+           studentToUpdate.name = req.body.name || studentToUpdate.name;
+           studentToUpdate.email = req.body.email || studentToUpdate.email;
+           studentToUpdate.password = req.body.password || studentToUpdate.password;
+           studentToUpdate.save();
+           res.status(200).json({message: {studentToUpdate}})
         }
-        
     } catch (error) {
         res.status(500).json({message: { error: "Erro interno tente mais tarde"}});
     }

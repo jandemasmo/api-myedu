@@ -30,10 +30,28 @@ const addEducator = async (req, res) => {
 }
 
 const getEducator = async (req, res) =>{
-
+    try {
+        const educator =  await EducatorSchema.findOne({_id: req.params.id});
+        if(educator){
+            res.status(200).json({message: educator});
+        }else{
+            res.status(404).json({message: { error: "Educador não encontrado"}});
+        }
+    } catch (error) {
+        res.status(500).json({message: {error: "Erro interno. Tente novamente"}})
+    }
 }
 const getAllEducator = async (req, res) =>{
-
+    try {
+        const educator =  await EducatorSchema.find();
+        if(educator){
+            res.status(200).json({message: educator});
+        }else{
+            res.status(404).json({message: { error: "Nenhum educador não encontrado"}});
+        }
+    } catch (error) {
+        res.status(500).json({message: {error: "Erro interno. Tente novamente"}})
+    }
 }
 const updateEducator = async (req, res) =>{
 
