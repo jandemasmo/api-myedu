@@ -69,7 +69,7 @@ const updateStudent = async (req, res) =>{
            studentToUpdate.name = req.body.name || studentToUpdate.name;
            studentToUpdate.email = req.body.email || studentToUpdate.email;
            studentToUpdate.password = req.body.password || studentToUpdate.password;
-           studentToUpdate.save();
+           await studentToUpdate.save();
            res.status(200).json({message: {studentToUpdate}})
         }
     } catch (error) {

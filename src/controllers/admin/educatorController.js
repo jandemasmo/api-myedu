@@ -54,7 +54,18 @@ const getAllEducator = async (req, res) =>{
     }
 }
 const updateEducator = async (req, res) =>{
-
+    try {
+        const  educator = await EducatorSchema.findOne({_id: req.params.id});
+        if(educator){
+            educator.name = req.body.name || educator.name;
+            educator.email = req.body.email || educator.email;
+            educator.password = req.body.password || educator.password;
+            await educator.save()
+            res.status(200).json({message: educator});
+        }
+    } catch (error) {
+        res.status(500).json({message: {error: "Erro interno. Tente novamente"}})
+    }
 }
 const deleteEducator = async (req, res) =>{
 
