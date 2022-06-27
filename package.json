@@ -4,7 +4,8 @@
   "description": "Api para o projeto My Edu do bootcamp TERA",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
   },
   "engines":{
     "node": "16.14.2"
@@ -18,8 +19,7 @@
     "express": "^4.18.1",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.3",
-    "nodemon": "^2.0.16"
+    "mongoose": "^6.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
