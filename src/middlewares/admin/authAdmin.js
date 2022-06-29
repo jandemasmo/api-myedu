@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
         res.status(401).json({message: "Acesso não permitido"});
     }
 
-    const [authType, token] = req.headers.authorization.split(" ");
+    const [authType, token] = req.headers.authorization.split(' ');
     if(authType != "Bearer"){
         res.status(401).json({message: "Acesso não permitido "});
     }
