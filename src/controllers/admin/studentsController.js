@@ -73,7 +73,7 @@ const updateStudent = async (req, res) =>{
            res.status(200).json({message: {studentToUpdate}})
         }
     } catch (error) {
-        res.status(500).json({message: { error: "Erro interno tente mais tarde"}});
+        res.status(500).json({message: { error: "Erro interno tente mais tarde!"}});
     }
 }
 
