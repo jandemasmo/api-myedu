@@ -31,15 +31,15 @@ router.delete("/course/:id", authAdmin.auth, courseValidator.auth, courseControl
 
 //materials routes
 router.post("/materials",authAdmin.auth,materialValidator.auth ,materialsController.addMaterials);
-router.get("/materials/:id",authAdmin.auth, materialsController.getAllMaterials);
-router.get("/materials",authAdmin.auth, materialsController.getMaterials);
+router.get("/materials",authAdmin.auth, materialsController.getAllMaterials);
+router.get("/materials/:id",authAdmin.auth, materialsController.getMaterials);
 router.put("/materials/:id",authAdmin.auth, materialsController.updateMaterials);
 router.delete("/materials/:id",authAdmin.auth, materialsController.deleteMaterials);
 
 //theme routes
 router.post("/theme",authAdmin.auth, themeController.addTheme);
-router.get("/theme/:id",authAdmin.auth, themeController.getAllTheme);
-router.get("/theme",authAdmin.auth, themeController.getTheme);
+router.get("/theme", authAdmin.auth, themeController.getAllTheme);
+router.get("/theme/:id",authAdmin.auth, themeController.getTheme);
 router.put("/theme/:id",authAdmin.auth, themeController.updateTheme);
 router.delete("/theme/:id",authAdmin.auth, themeController.deleteTheme);
 
