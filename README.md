@@ -1,6 +1,6 @@
 ## 💻 Projeto
 API do projeto MYEDU . Trata se de um projeto EAD a ser entregue na formação do bootcamp TERA.
-Nesse projeto trabalhamos em 3 partes. Sendo elas, ADMIN, EAD e WEBSITE.
+Nesse projeto trabalhamos em 3 partes. Sendo elas, admin, ead e website.
 <br>
 ## 🚀 Tecnologias
 
