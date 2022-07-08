@@ -1,17 +1,21 @@
 const StudentSchema = require("../../models/studentSchema");
 const CourseSchema = require("../../models/courseSchema");
 const MaterialsSchema = require("../../models/materialsSchema");
+const ThemeSchema = require("../../models/themeSchema");
 const expressValidator = require("express-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const dashboard = async (req, res)=>{
-
-    const course = await CourseSchema.findOne({_id: req.user.course});
-    const materials = await MaterialsSchema.find({id_course: course._id});
-    const courseName = course.name
-    const student = req.user.name;
-    res.status(200).json({materials, courseName, student});
+    try {
+        const course = await CourseSchema.findOne({_id: req.user.course});
+        const materials = await MaterialsSchema.find({id_course: course._id});
+        const courseName = course.name
+        const student = req.user.name;
+        res.status(200).json({materials, courseName, student});
+    } catch (error) {
+        res.status(500).json({message: { error: "Erro interno tente mais tarde"}});
+    }
 }
 
 const login = async (req, res) => {
@@ -41,9 +45,18 @@ const login = async (req, res) => {
     }
 }
 
+const themes = async (req, res) => {
+    try {
+       const themes = await ThemeSchema.find({id_materials: req.params.id})
+       res.status(200).json({themes});
+    } catch (error) {
+        res.status(500).json({message: { error: "Erro interno tente mais tarde"}});
+    }
+}
 
 
 module.exports = {
     dashboard,
     login,
+    themes
 }

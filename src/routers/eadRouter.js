@@ -7,7 +7,10 @@ const authStudent = require("../middlewares/ead/authStudent");
 
 
 //ead routes
-router.get("/dashboard", authStudent.auth, eadController.dashboard)
 router.post("/login", validateLogin.auth, eadController.login);
+router.get("/dashboard", authStudent.auth, eadController.dashboard);
+router.get("/themes/:id", authStudent.auth, eadController.themes);
+
+
 
 module.exports = router;
