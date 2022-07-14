@@ -10,6 +10,8 @@ const authStudent = require("../middlewares/ead/authStudent");
 router.post("/login", validateLogin.auth, eadController.login);
 router.get("/dashboard", authStudent.auth, eadController.dashboard);
 router.get("/themes/:id", authStudent.auth, eadController.themes);
+router.get("/educator/:id", authStudent.auth, eadController.educator);
+router.post("/update-status-theme", authStudent.auth, eadController.updateStatusTheme);
 
 
 

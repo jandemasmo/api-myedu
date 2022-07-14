@@ -1,4 +1,5 @@
 const MaterialsSchema = require("../../models/materialsSchema");
+const EducatorSchema = require("../../models/educatorSchema");
 const expressValidator = require("express-validator");
 
 const addMaterials = async (req, res) => {
@@ -14,7 +15,14 @@ const addMaterials = async (req, res) => {
             res.status(400).json({ message: { error: "Escolha um curso" } });
         }
 
-        const newMaterial = new MaterialsSchema({ id_course: req.body.id_course, name: req.body.name });
+        const nameEducator = await EducatorSchema.findOne({_id: req.body.id_educator});
+
+        const newMaterial = new MaterialsSchema({ name: req.body.name, 
+            description: req.body.description, 
+            id_educator: req.body.id_educator ,
+            name_educator: nameEducator.name,
+            id_course: req.body.id_course  });
+
         await newMaterial.save();
         res.status(200).json({ newMaterial });
     } catch (error) {

@@ -7,7 +7,10 @@ const auth = async (req, res, next) => {
         res.status(401).json({message: "Acesso não permitido"});
     }
 
-    const [token] = req.headers.authorization.split(' ')[0];
+    const [authType, token] = req.headers.authorization.split(' ');
+    if(authType != "Bearer"){
+        res.status(401).json({message: "Acesso não permitido "});
+    }
 
     try {
         const student = jwt.verify(token, process.env.JWT_SECRET_TOKEN)

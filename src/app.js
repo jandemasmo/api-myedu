@@ -6,8 +6,10 @@ require("dotenv-safe").config();
 
 
 database.connect();
-app.use(express.json());
+
 app.use(cors())
+
+app.use(express.json());
 
 //website routers
 const websiteRouter = require("./routers/websiteRouter");
